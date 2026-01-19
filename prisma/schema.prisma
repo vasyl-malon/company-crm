@@ -1,0 +1,116 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum CodeType {
+  LOGIN
+  RESET_PASSWORD
+  INVITATION
+}
+
+enum UserStatus {
+  PENDING
+  ACTIVE
+  DISABLED
+}
+
+model User {
+  id Int @id @default(autoincrement())
+
+  // Auth
+  email           String    @unique
+  password        String?
+  emailVerifiedAt DateTime?
+  lastLoginAt     DateTime?
+
+  // Access
+  // role      Role
+  // status    UserStatus @default(PENDING)
+
+  // Tenant (null for SUPER_ADMIN)
+  companyId Int?
+  company   Company? @relation(fields: [companyId], references: [id])
+
+  // Profile
+  firstName String?
+  lastName  String?
+  avatarUrl String?
+
+  // Security
+  failedLoginAttempts Int       @default(0)
+  lockedUntil         DateTime?
+
+  // System
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  activityLogs ActivityLog[]
+  notes        Note[]
+
+  invitations        Invitation[]
+  emailVerifications EmailVerification[]
+}
+
+model Company {
+  id Int @id @default(autoincrement())
+
+  users User[]
+}
+
+model ActivityLog {
+  id Int @id @default(autoincrement())
+
+  users User[]
+}
+
+model Note {
+  id Int @id @default(autoincrement())
+
+  users User[]
+}
+
+model Invitation {
+  id    Int    @id @default(autoincrement())
+  email String
+  token String @unique
+  role  Role
+
+  createdById Int
+  createdBy   User @relation(fields: [createdById], references: [id])
+
+  expiresAt DateTime
+  usedAt    DateTime?
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+}
+
+model EmailVerification {
+  id           Int       @id @default(autoincrement())
+  type         CodeType
+  userId       Int
+  codeHash     String
+  expiresAt    DateTime
+  attemptsLeft Int
+  usedAt       DateTime?
+  createdAt    DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
