@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { Role } from 'generated/prisma/enums';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
@@ -24,6 +24,21 @@ export class AuthController {
   @Post('/otp')
   async checkOtp(@Body() payload: OtpDto) {
     return this.authService.checkOtp(payload);
+  }
+
+  @Get('/test')
+  async test(@Body() payload: OtpDto) {
+    return [
+      {
+        id: 1,
+      },
+      {
+        id: 2,
+      },
+      {
+        id: 3,
+      },
+    ];
   }
 
   @Post('/invite')
