@@ -1,3 +1,14 @@
+name: Ping Render
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # кожні 10 хв
+  workflow_dispatch:        # можна запустити вручну
+  push:
+    branches:
+      - main
+      - staging
+
 jobs:
   ping:
     runs-on: ubuntu-latest
