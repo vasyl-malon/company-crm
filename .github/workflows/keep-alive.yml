@@ -2,10 +2,21 @@ jobs:
   ping:
     runs-on: ubuntu-latest
 
-    environment: ${{ github.ref_name == 'main' && 'Production' || 'Staging' }}
-
     steps:
+      - name: Resolve environment and URL
+        run: |
+          echo "Branch: $GITHUB_REF_NAME"
+
+          if [ "$GITHUB_REF_NAME" = "main" ]; then
+            echo "ENV=production" >> $GITHUB_ENV
+            echo "RENDER_HEALTH_URL=https://company-crm-y87h.onrender.com/health" >> $GITHUB_ENV
+          else
+            echo "ENV=staging" >> $GITHUB_ENV
+            echo "RENDER_HEALTH_URL=https://company-crm-6i64.onrender.com/health" >> $GITHUB_ENV
+          fi
+
       - name: Ping Render
         run: |
+          echo "Environment: $ENV"
           echo "Pinging $RENDER_HEALTH_URL"
-          curl -s -o /dev/null -w "%{http_code}" "$RENDER_HEALTH_URL"
+          curl -v "$RENDER_HEALTH_URL"
