@@ -1,0 +1,11 @@
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    environment: ${{ github.ref_name == 'main' && 'Production' || 'Staging' }}
+
+    steps:
+      - name: Ping Render
+        run: |
+          echo "Pinging $RENDER_HEALTH_URL"
+          curl -s -o /dev/null -w "%{http_code}" "$RENDER_HEALTH_URL"
