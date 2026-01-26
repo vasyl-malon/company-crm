@@ -79,7 +79,7 @@ export class AuthService {
         data: updateData,
       });
 
-      throw new UnauthorizedException('INVALID_CREDENTIALS');
+      throw new UnauthorizedException(attempts % MAX_ATTEMPTS === 0 ? 'ACCOUNT_LOCKED' : 'INVALID_CREDENTIALS');
     }
 
     const otp = Math.floor(1000 + Math.random() * 9000).toString();
