@@ -46,4 +46,10 @@ export class AuthController {
   async send(@Body() body: { email: string; role: Role }, @CurrentUser() user: { id: number }) {
     return this.authService.sendInvitation(body.email, body.role, user.id);
   }
+
+  @Get('/profile')
+  @UseGuards(AuthGuard)
+  async getProfile(@CurrentUser() user: { id: number }) {
+    return this.authService.sendInvitation(body.email, body.role, user.id);
+  }
 }

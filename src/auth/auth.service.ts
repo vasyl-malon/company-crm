@@ -46,6 +46,20 @@ export class AuthService {
     return { token };
   }
 
+  async getProfile(id: number) {
+    const user = await this.prisma.user.findUnique({
+      where: { id },
+    });
+
+    return {
+      id: user?.id,
+      avatar: user?.avatarUrl,
+      email: user?.email,
+      firstName: user?.firstName,
+      lastName: user?.lastName,
+    };
+  }
+
   async login({ email, password }: LoginUserDto): Promise<any> {
     const user = await this.prisma.user.findUnique({ where: { email } });
     const now = new Date();
@@ -79,7 +93,9 @@ export class AuthService {
         data: updateData,
       });
 
-      throw new UnauthorizedException(attempts % MAX_ATTEMPTS === 0 ? 'ACCOUNT_LOCKED' : 'INVALID_CREDENTIALS');
+      throw new UnauthorizedException(
+        attempts % MAX_ATTEMPTS === 0 ? 'ACCOUNT_LOCKED' : 'INVALID_CREDENTIALS',
+      );
     }
 
     const otp = Math.floor(1000 + Math.random() * 9000).toString();
@@ -135,7 +151,7 @@ export class AuthService {
 
     if (!record) throw new UnauthorizedException('INVALID_OR_EXPIRED_CODE');
 
-    console.log(record, code)
+    console.log(record, code);
 
     const valid = await bcrypt.compare(code, record.codeHash);
 

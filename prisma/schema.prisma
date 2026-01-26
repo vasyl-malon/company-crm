@@ -41,8 +41,10 @@ model User {
   lastLoginAt     DateTime?
 
   // Access
-  // role      Role
-  // status    UserStatus @default(PENDING)
+  role        Role
+  status      UserStatus @default(PENDING)
+  phoneNumber String
+  birthdate   DateTime
 
   // Tenant (null for SUPER_ADMIN)
   companyId Int?
