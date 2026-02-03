@@ -1,29 +1,30 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { Role } from 'generated/prisma/enums';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { AuthGuard } from './auth.guard';
 import { LoginUserDto } from './dto/login-user-dto';
 import { OtpDto } from './dto/otp-dto';
+import { AdminGuard } from './role-admin.guard';
+import { InviteUserDto } from './dto/invite-user';
+import { CompleteRegistrationDto } from './dto/complete-registration-dto';
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  // This would receive requests at '/auth/register'
   @Post('/signup')
   async register(@Body() userDto: LoginUserDto) {
     return this.authService.register(userDto);
   }
 
   @Post('/login')
-  async login(@Body() userDto: LoginUserDto) {
-    return this.authService.login(userDto);
+  async login(@Body() dto: LoginUserDto) {
+    return this.authService.login(dto);
   }
 
-  @Post('/otp')
-  async checkOtp(@Body() payload: OtpDto) {
-    return this.authService.checkOtp(payload);
+  @Post('/verify-otp')
+  async checkOtp(@Body() dto: OtpDto) {
+    return this.authService.verifyOtp(dto);
   }
 
   @Get('/test')
@@ -41,15 +42,25 @@ export class AuthController {
     ];
   }
 
-  @Post('/invite')
-  @UseGuards(AuthGuard)
-  async send(@Body() body: { email: string; role: Role }, @CurrentUser() user: { id: number }) {
-    return this.authService.sendInvitation(body.email, body.role, user.id);
+  @Post('/invite-user')
+  @UseGuards(AuthGuard, AdminGuard)
+  async send(@Body() dto: InviteUserDto, @CurrentUser() user: { id: number }) {
+    return this.authService.sendInvitation(dto, user.id);
   }
 
   @Get('/profile')
   @UseGuards(AuthGuard)
   async getProfile(@CurrentUser() user: { id: number }) {
-    return this.authService.sendInvitation(body.email, body.role, user.id);
+    return this.authService.getProfile(user.id);
+  }
+
+  @Get('/verify-token')
+  async verifyToken(@Query('token') token: string) {
+    return this.authService.verifyToken(token);
+  }
+
+  @Post('/complete-registration')
+  async completeRegistration(@Query('token') token: string, @Body() dto: CompleteRegistrationDto) {
+    return this.authService.completeRegistration(token, dto);
   }
 }

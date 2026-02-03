@@ -27,17 +27,15 @@ export type AggregateInvitation = {
 }
 
 export type InvitationAvgAggregateOutputType = {
-  id: number | null
   createdById: number | null
 }
 
 export type InvitationSumAggregateOutputType = {
-  id: number | null
   createdById: number | null
 }
 
 export type InvitationMinAggregateOutputType = {
-  id: number | null
+  id: string | null
   email: string | null
   token: string | null
   role: $Enums.Role | null
@@ -49,7 +47,7 @@ export type InvitationMinAggregateOutputType = {
 }
 
 export type InvitationMaxAggregateOutputType = {
-  id: number | null
+  id: string | null
   email: string | null
   token: string | null
   role: $Enums.Role | null
@@ -75,12 +73,10 @@ export type InvitationCountAggregateOutputType = {
 
 
 export type InvitationAvgAggregateInputType = {
-  id?: true
   createdById?: true
 }
 
 export type InvitationSumAggregateInputType = {
-  id?: true
   createdById?: true
 }
 
@@ -208,7 +204,7 @@ export type InvitationGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 export type InvitationGroupByOutputType = {
-  id: number
+  id: string
   email: string
   token: string
   role: $Enums.Role
@@ -243,7 +239,7 @@ export type InvitationWhereInput = {
   AND?: Prisma.InvitationWhereInput | Prisma.InvitationWhereInput[]
   OR?: Prisma.InvitationWhereInput[]
   NOT?: Prisma.InvitationWhereInput | Prisma.InvitationWhereInput[]
-  id?: Prisma.IntFilter<"Invitation"> | number
+  id?: Prisma.StringFilter<"Invitation"> | string
   email?: Prisma.StringFilter<"Invitation"> | string
   token?: Prisma.StringFilter<"Invitation"> | string
   role?: Prisma.EnumRoleFilter<"Invitation"> | $Enums.Role
@@ -269,7 +265,7 @@ export type InvitationOrderByWithRelationInput = {
 }
 
 export type InvitationWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   token?: string
   AND?: Prisma.InvitationWhereInput | Prisma.InvitationWhereInput[]
   OR?: Prisma.InvitationWhereInput[]
@@ -305,7 +301,7 @@ export type InvitationScalarWhereWithAggregatesInput = {
   AND?: Prisma.InvitationScalarWhereWithAggregatesInput | Prisma.InvitationScalarWhereWithAggregatesInput[]
   OR?: Prisma.InvitationScalarWhereWithAggregatesInput[]
   NOT?: Prisma.InvitationScalarWhereWithAggregatesInput | Prisma.InvitationScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"Invitation"> | number
+  id?: Prisma.StringWithAggregatesFilter<"Invitation"> | string
   email?: Prisma.StringWithAggregatesFilter<"Invitation"> | string
   token?: Prisma.StringWithAggregatesFilter<"Invitation"> | string
   role?: Prisma.EnumRoleWithAggregatesFilter<"Invitation"> | $Enums.Role
@@ -317,6 +313,7 @@ export type InvitationScalarWhereWithAggregatesInput = {
 }
 
 export type InvitationCreateInput = {
+  id?: string
   email: string
   token: string
   role: $Enums.Role
@@ -328,7 +325,7 @@ export type InvitationCreateInput = {
 }
 
 export type InvitationUncheckedCreateInput = {
-  id?: number
+  id?: string
   email: string
   token: string
   role: $Enums.Role
@@ -340,6 +337,7 @@ export type InvitationUncheckedCreateInput = {
 }
 
 export type InvitationUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
@@ -351,7 +349,7 @@ export type InvitationUpdateInput = {
 }
 
 export type InvitationUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
@@ -363,7 +361,7 @@ export type InvitationUncheckedUpdateInput = {
 }
 
 export type InvitationCreateManyInput = {
-  id?: number
+  id?: string
   email: string
   token: string
   role: $Enums.Role
@@ -375,6 +373,7 @@ export type InvitationCreateManyInput = {
 }
 
 export type InvitationUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
@@ -385,7 +384,7 @@ export type InvitationUpdateManyMutationInput = {
 }
 
 export type InvitationUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
@@ -419,7 +418,6 @@ export type InvitationCountOrderByAggregateInput = {
 }
 
 export type InvitationAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
 }
 
@@ -448,7 +446,6 @@ export type InvitationMinOrderByAggregateInput = {
 }
 
 export type InvitationSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
 }
 
@@ -494,11 +491,8 @@ export type InvitationUncheckedUpdateManyWithoutCreatedByNestedInput = {
   deleteMany?: Prisma.InvitationScalarWhereInput | Prisma.InvitationScalarWhereInput[]
 }
 
-export type EnumRoleFieldUpdateOperationsInput = {
-  set?: $Enums.Role
-}
-
 export type InvitationCreateWithoutCreatedByInput = {
+  id?: string
   email: string
   token: string
   role: $Enums.Role
@@ -509,7 +503,7 @@ export type InvitationCreateWithoutCreatedByInput = {
 }
 
 export type InvitationUncheckedCreateWithoutCreatedByInput = {
-  id?: number
+  id?: string
   email: string
   token: string
   role: $Enums.Role
@@ -549,7 +543,7 @@ export type InvitationScalarWhereInput = {
   AND?: Prisma.InvitationScalarWhereInput | Prisma.InvitationScalarWhereInput[]
   OR?: Prisma.InvitationScalarWhereInput[]
   NOT?: Prisma.InvitationScalarWhereInput | Prisma.InvitationScalarWhereInput[]
-  id?: Prisma.IntFilter<"Invitation"> | number
+  id?: Prisma.StringFilter<"Invitation"> | string
   email?: Prisma.StringFilter<"Invitation"> | string
   token?: Prisma.StringFilter<"Invitation"> | string
   role?: Prisma.EnumRoleFilter<"Invitation"> | $Enums.Role
@@ -561,7 +555,7 @@ export type InvitationScalarWhereInput = {
 }
 
 export type InvitationCreateManyCreatedByInput = {
-  id?: number
+  id?: string
   email: string
   token: string
   role: $Enums.Role
@@ -572,6 +566,7 @@ export type InvitationCreateManyCreatedByInput = {
 }
 
 export type InvitationUpdateWithoutCreatedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
@@ -582,7 +577,7 @@ export type InvitationUpdateWithoutCreatedByInput = {
 }
 
 export type InvitationUncheckedUpdateWithoutCreatedByInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
@@ -593,7 +588,7 @@ export type InvitationUncheckedUpdateWithoutCreatedByInput = {
 }
 
 export type InvitationUncheckedUpdateManyWithoutCreatedByInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
@@ -673,7 +668,7 @@ export type $InvitationPayload<ExtArgs extends runtime.Types.Extensions.Internal
     createdBy: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
+    id: string
     email: string
     token: string
     role: $Enums.Role
@@ -1106,7 +1101,7 @@ export interface Prisma__InvitationClient<T, Null = never, ExtArgs extends runti
  * Fields of the Invitation model
  */
 export interface InvitationFieldRefs {
-  readonly id: Prisma.FieldRef<"Invitation", 'Int'>
+  readonly id: Prisma.FieldRef<"Invitation", 'String'>
   readonly email: Prisma.FieldRef<"Invitation", 'String'>
   readonly token: Prisma.FieldRef<"Invitation", 'String'>
   readonly role: Prisma.FieldRef<"Invitation", 'Role'>

@@ -1,16 +1,14 @@
-// src/auth/guards/auth.guard.ts
-import {
-  Injectable,
-  CanActivate,
-  ExecutionContext,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { UnauthorizedException } from '@nestjs/common';
+import { Role } from 'generated/prisma/enums';
 import { verify } from 'jsonwebtoken';
-import { jwtConstants } from './jwt.constants';
 
-export function validateRequest(request: any): boolean {
-  const authHeader =
-    request.headers['authorization'] || request.headers['Authorization'];
+export const jwtConstants = {
+  secret: process.env.JWT_TOKEN,
+  expiresIn: '1h',
+};
+
+export const getToken = (request: any) => {
+  const authHeader = request.headers['authorization'] || request.headers['Authorization'];
   if (!authHeader) {
     throw new UnauthorizedException('No Authorization header');
   }
@@ -20,10 +18,14 @@ export function validateRequest(request: any): boolean {
     throw new UnauthorizedException('Invalid Authorization header format');
   }
 
+  return token;
+};
+
+export const validateRequest = (request: any) => {
+  const token = getToken(request);
+
   try {
-    // валідуємо токен
-    const payload = verify(token, jwtConstants.secret) as any;
-    // ставимо user у request
+    const payload = verify(token, process.env.JWT_TOKEN) as any;
     request.user = {
       id: payload.sub,
       email: payload.email,
@@ -33,4 +35,15 @@ export function validateRequest(request: any): boolean {
   } catch (err) {
     throw new UnauthorizedException('Invalid or expired token');
   }
-}
+};
+
+export const validateRole = (request: any) => {
+  const token = getToken(request);
+
+  try {
+    const payload = verify(token, process.env.JWT_TOKEN) as any;
+    return payload.role === Role.ADMIN;
+  } catch (err) {
+    throw new UnauthorizedException('Invalid or expired token');
+  }
+};

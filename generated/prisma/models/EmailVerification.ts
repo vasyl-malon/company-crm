@@ -27,19 +27,17 @@ export type AggregateEmailVerification = {
 }
 
 export type EmailVerificationAvgAggregateOutputType = {
-  id: number | null
   userId: number | null
   attemptsLeft: number | null
 }
 
 export type EmailVerificationSumAggregateOutputType = {
-  id: number | null
   userId: number | null
   attemptsLeft: number | null
 }
 
 export type EmailVerificationMinAggregateOutputType = {
-  id: number | null
+  id: string | null
   type: $Enums.CodeType | null
   userId: number | null
   codeHash: string | null
@@ -50,7 +48,7 @@ export type EmailVerificationMinAggregateOutputType = {
 }
 
 export type EmailVerificationMaxAggregateOutputType = {
-  id: number | null
+  id: string | null
   type: $Enums.CodeType | null
   userId: number | null
   codeHash: string | null
@@ -74,13 +72,11 @@ export type EmailVerificationCountAggregateOutputType = {
 
 
 export type EmailVerificationAvgAggregateInputType = {
-  id?: true
   userId?: true
   attemptsLeft?: true
 }
 
 export type EmailVerificationSumAggregateInputType = {
-  id?: true
   userId?: true
   attemptsLeft?: true
 }
@@ -206,7 +202,7 @@ export type EmailVerificationGroupByArgs<ExtArgs extends runtime.Types.Extension
 }
 
 export type EmailVerificationGroupByOutputType = {
-  id: number
+  id: string
   type: $Enums.CodeType
   userId: number
   codeHash: string
@@ -240,7 +236,7 @@ export type EmailVerificationWhereInput = {
   AND?: Prisma.EmailVerificationWhereInput | Prisma.EmailVerificationWhereInput[]
   OR?: Prisma.EmailVerificationWhereInput[]
   NOT?: Prisma.EmailVerificationWhereInput | Prisma.EmailVerificationWhereInput[]
-  id?: Prisma.IntFilter<"EmailVerification"> | number
+  id?: Prisma.StringFilter<"EmailVerification"> | string
   type?: Prisma.EnumCodeTypeFilter<"EmailVerification"> | $Enums.CodeType
   userId?: Prisma.IntFilter<"EmailVerification"> | number
   codeHash?: Prisma.StringFilter<"EmailVerification"> | string
@@ -264,7 +260,7 @@ export type EmailVerificationOrderByWithRelationInput = {
 }
 
 export type EmailVerificationWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   AND?: Prisma.EmailVerificationWhereInput | Prisma.EmailVerificationWhereInput[]
   OR?: Prisma.EmailVerificationWhereInput[]
   NOT?: Prisma.EmailVerificationWhereInput | Prisma.EmailVerificationWhereInput[]
@@ -298,7 +294,7 @@ export type EmailVerificationScalarWhereWithAggregatesInput = {
   AND?: Prisma.EmailVerificationScalarWhereWithAggregatesInput | Prisma.EmailVerificationScalarWhereWithAggregatesInput[]
   OR?: Prisma.EmailVerificationScalarWhereWithAggregatesInput[]
   NOT?: Prisma.EmailVerificationScalarWhereWithAggregatesInput | Prisma.EmailVerificationScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"EmailVerification"> | number
+  id?: Prisma.StringWithAggregatesFilter<"EmailVerification"> | string
   type?: Prisma.EnumCodeTypeWithAggregatesFilter<"EmailVerification"> | $Enums.CodeType
   userId?: Prisma.IntWithAggregatesFilter<"EmailVerification"> | number
   codeHash?: Prisma.StringWithAggregatesFilter<"EmailVerification"> | string
@@ -309,6 +305,7 @@ export type EmailVerificationScalarWhereWithAggregatesInput = {
 }
 
 export type EmailVerificationCreateInput = {
+  id?: string
   type: $Enums.CodeType
   codeHash: string
   expiresAt: Date | string
@@ -319,7 +316,7 @@ export type EmailVerificationCreateInput = {
 }
 
 export type EmailVerificationUncheckedCreateInput = {
-  id?: number
+  id?: string
   type: $Enums.CodeType
   userId: number
   codeHash: string
@@ -330,6 +327,7 @@ export type EmailVerificationUncheckedCreateInput = {
 }
 
 export type EmailVerificationUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumCodeTypeFieldUpdateOperationsInput | $Enums.CodeType
   codeHash?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -340,7 +338,7 @@ export type EmailVerificationUpdateInput = {
 }
 
 export type EmailVerificationUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumCodeTypeFieldUpdateOperationsInput | $Enums.CodeType
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   codeHash?: Prisma.StringFieldUpdateOperationsInput | string
@@ -351,7 +349,7 @@ export type EmailVerificationUncheckedUpdateInput = {
 }
 
 export type EmailVerificationCreateManyInput = {
-  id?: number
+  id?: string
   type: $Enums.CodeType
   userId: number
   codeHash: string
@@ -362,6 +360,7 @@ export type EmailVerificationCreateManyInput = {
 }
 
 export type EmailVerificationUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumCodeTypeFieldUpdateOperationsInput | $Enums.CodeType
   codeHash?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -371,7 +370,7 @@ export type EmailVerificationUpdateManyMutationInput = {
 }
 
 export type EmailVerificationUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumCodeTypeFieldUpdateOperationsInput | $Enums.CodeType
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   codeHash?: Prisma.StringFieldUpdateOperationsInput | string
@@ -403,7 +402,6 @@ export type EmailVerificationCountOrderByAggregateInput = {
 }
 
 export type EmailVerificationAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   attemptsLeft?: Prisma.SortOrder
 }
@@ -431,7 +429,6 @@ export type EmailVerificationMinOrderByAggregateInput = {
 }
 
 export type EmailVerificationSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   attemptsLeft?: Prisma.SortOrder
 }
@@ -483,6 +480,7 @@ export type EnumCodeTypeFieldUpdateOperationsInput = {
 }
 
 export type EmailVerificationCreateWithoutUserInput = {
+  id?: string
   type: $Enums.CodeType
   codeHash: string
   expiresAt: Date | string
@@ -492,7 +490,7 @@ export type EmailVerificationCreateWithoutUserInput = {
 }
 
 export type EmailVerificationUncheckedCreateWithoutUserInput = {
-  id?: number
+  id?: string
   type: $Enums.CodeType
   codeHash: string
   expiresAt: Date | string
@@ -531,7 +529,7 @@ export type EmailVerificationScalarWhereInput = {
   AND?: Prisma.EmailVerificationScalarWhereInput | Prisma.EmailVerificationScalarWhereInput[]
   OR?: Prisma.EmailVerificationScalarWhereInput[]
   NOT?: Prisma.EmailVerificationScalarWhereInput | Prisma.EmailVerificationScalarWhereInput[]
-  id?: Prisma.IntFilter<"EmailVerification"> | number
+  id?: Prisma.StringFilter<"EmailVerification"> | string
   type?: Prisma.EnumCodeTypeFilter<"EmailVerification"> | $Enums.CodeType
   userId?: Prisma.IntFilter<"EmailVerification"> | number
   codeHash?: Prisma.StringFilter<"EmailVerification"> | string
@@ -542,7 +540,7 @@ export type EmailVerificationScalarWhereInput = {
 }
 
 export type EmailVerificationCreateManyUserInput = {
-  id?: number
+  id?: string
   type: $Enums.CodeType
   codeHash: string
   expiresAt: Date | string
@@ -552,6 +550,7 @@ export type EmailVerificationCreateManyUserInput = {
 }
 
 export type EmailVerificationUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumCodeTypeFieldUpdateOperationsInput | $Enums.CodeType
   codeHash?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -561,7 +560,7 @@ export type EmailVerificationUpdateWithoutUserInput = {
 }
 
 export type EmailVerificationUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumCodeTypeFieldUpdateOperationsInput | $Enums.CodeType
   codeHash?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -571,7 +570,7 @@ export type EmailVerificationUncheckedUpdateWithoutUserInput = {
 }
 
 export type EmailVerificationUncheckedUpdateManyWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumCodeTypeFieldUpdateOperationsInput | $Enums.CodeType
   codeHash?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -646,7 +645,7 @@ export type $EmailVerificationPayload<ExtArgs extends runtime.Types.Extensions.I
     user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
+    id: string
     type: $Enums.CodeType
     userId: number
     codeHash: string
@@ -1078,7 +1077,7 @@ export interface Prisma__EmailVerificationClient<T, Null = never, ExtArgs extend
  * Fields of the EmailVerification model
  */
 export interface EmailVerificationFieldRefs {
-  readonly id: Prisma.FieldRef<"EmailVerification", 'Int'>
+  readonly id: Prisma.FieldRef<"EmailVerification", 'String'>
   readonly type: Prisma.FieldRef<"EmailVerification", 'CodeType'>
   readonly userId: Prisma.FieldRef<"EmailVerification", 'Int'>
   readonly codeHash: Prisma.FieldRef<"EmailVerification", 'String'>
