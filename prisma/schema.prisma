@@ -34,26 +34,35 @@ enum UserStatus {
 model User {
   id Int @id @default(autoincrement())
 
-  // Auth
   email           String    @unique
   password        String?
   emailVerifiedAt DateTime?
   lastLoginAt     DateTime?
 
-  // Access
   role        Role
   status      UserStatus @default(PENDING)
   phoneNumber String
   birthdate   DateTime
 
-  // Tenant (null for SUPER_ADMIN)
-  companyId Int?
-  company   Company? @relation(fields: [companyId], references: [id])
+  branchId Int?
+  branch   Branch? @relation(fields: [branchId], references: [id])
 
-  // Profile
+  departmentId Int?
+  department   Department? @relation(fields: [departmentId], references: [id])
+
+  jobPosition String?
+
+  country String?
+  city String?
+
   firstName String?
   lastName  String?
   avatarUrl String?
+
+  gender String?
+
+  startDate DateTime?
+  endDate DateTime?
 
   // Security
   failedLoginAttempts Int       @default(0)
@@ -65,25 +74,28 @@ model User {
 
   // Relations
   activityLogs ActivityLog[]
-  notes        Note[]
 
   invitations        Invitation[]
   emailVerifications EmailVerification[]
 }
 
-model Company {
+model Branch {
   id Int @id @default(autoincrement())
+  name String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  users User[]
+}
 
+model Department {
+  id Int @id @default(autoincrement())
+  name String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   users User[]
 }
 
 model ActivityLog {
-  id Int @id @default(autoincrement())
-
-  users User[]
-}
-
-model Note {
   id Int @id @default(autoincrement())
 
   users User[]

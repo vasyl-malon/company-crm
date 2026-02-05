@@ -52,9 +52,9 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
-  Company: 'Company',
+  Branch: 'Branch',
+  Department: 'Department',
   ActivityLog: 'ActivityLog',
-  Note: 'Note',
   Invitation: 'Invitation',
   EmailVerification: 'EmailVerification'
 } as const
@@ -85,10 +85,17 @@ export const UserScalarFieldEnum = {
   status: 'status',
   phoneNumber: 'phoneNumber',
   birthdate: 'birthdate',
-  companyId: 'companyId',
+  branchId: 'branchId',
+  departmentId: 'departmentId',
+  jobPosition: 'jobPosition',
+  country: 'country',
+  city: 'city',
   firstName: 'firstName',
   lastName: 'lastName',
   avatarUrl: 'avatarUrl',
+  gender: 'gender',
+  startDate: 'startDate',
+  endDate: 'endDate',
   failedLoginAttempts: 'failedLoginAttempts',
   lockedUntil: 'lockedUntil',
   createdAt: 'createdAt',
@@ -98,11 +105,24 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const CompanyScalarFieldEnum = {
-  id: 'id'
+export const BranchScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
-export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
+export type BranchScalarFieldEnum = (typeof BranchScalarFieldEnum)[keyof typeof BranchScalarFieldEnum]
+
+
+export const DepartmentScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DepartmentScalarFieldEnum = (typeof DepartmentScalarFieldEnum)[keyof typeof DepartmentScalarFieldEnum]
 
 
 export const ActivityLogScalarFieldEnum = {
@@ -110,13 +130,6 @@ export const ActivityLogScalarFieldEnum = {
 } as const
 
 export type ActivityLogScalarFieldEnum = (typeof ActivityLogScalarFieldEnum)[keyof typeof ActivityLogScalarFieldEnum]
-
-
-export const NoteScalarFieldEnum = {
-  id: 'id'
-} as const
-
-export type NoteScalarFieldEnum = (typeof NoteScalarFieldEnum)[keyof typeof NoteScalarFieldEnum]
 
 
 export const InvitationScalarFieldEnum = {

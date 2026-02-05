@@ -28,13 +28,15 @@ export type AggregateUser = {
 
 export type UserAvgAggregateOutputType = {
   id: number | null
-  companyId: number | null
+  branchId: number | null
+  departmentId: number | null
   failedLoginAttempts: number | null
 }
 
 export type UserSumAggregateOutputType = {
   id: number | null
-  companyId: number | null
+  branchId: number | null
+  departmentId: number | null
   failedLoginAttempts: number | null
 }
 
@@ -48,10 +50,17 @@ export type UserMinAggregateOutputType = {
   status: $Enums.UserStatus | null
   phoneNumber: string | null
   birthdate: Date | null
-  companyId: number | null
+  branchId: number | null
+  departmentId: number | null
+  jobPosition: string | null
+  country: string | null
+  city: string | null
   firstName: string | null
   lastName: string | null
   avatarUrl: string | null
+  gender: string | null
+  startDate: Date | null
+  endDate: Date | null
   failedLoginAttempts: number | null
   lockedUntil: Date | null
   createdAt: Date | null
@@ -68,10 +77,17 @@ export type UserMaxAggregateOutputType = {
   status: $Enums.UserStatus | null
   phoneNumber: string | null
   birthdate: Date | null
-  companyId: number | null
+  branchId: number | null
+  departmentId: number | null
+  jobPosition: string | null
+  country: string | null
+  city: string | null
   firstName: string | null
   lastName: string | null
   avatarUrl: string | null
+  gender: string | null
+  startDate: Date | null
+  endDate: Date | null
   failedLoginAttempts: number | null
   lockedUntil: Date | null
   createdAt: Date | null
@@ -88,10 +104,17 @@ export type UserCountAggregateOutputType = {
   status: number
   phoneNumber: number
   birthdate: number
-  companyId: number
+  branchId: number
+  departmentId: number
+  jobPosition: number
+  country: number
+  city: number
   firstName: number
   lastName: number
   avatarUrl: number
+  gender: number
+  startDate: number
+  endDate: number
   failedLoginAttempts: number
   lockedUntil: number
   createdAt: number
@@ -102,13 +125,15 @@ export type UserCountAggregateOutputType = {
 
 export type UserAvgAggregateInputType = {
   id?: true
-  companyId?: true
+  branchId?: true
+  departmentId?: true
   failedLoginAttempts?: true
 }
 
 export type UserSumAggregateInputType = {
   id?: true
-  companyId?: true
+  branchId?: true
+  departmentId?: true
   failedLoginAttempts?: true
 }
 
@@ -122,10 +147,17 @@ export type UserMinAggregateInputType = {
   status?: true
   phoneNumber?: true
   birthdate?: true
-  companyId?: true
+  branchId?: true
+  departmentId?: true
+  jobPosition?: true
+  country?: true
+  city?: true
   firstName?: true
   lastName?: true
   avatarUrl?: true
+  gender?: true
+  startDate?: true
+  endDate?: true
   failedLoginAttempts?: true
   lockedUntil?: true
   createdAt?: true
@@ -142,10 +174,17 @@ export type UserMaxAggregateInputType = {
   status?: true
   phoneNumber?: true
   birthdate?: true
-  companyId?: true
+  branchId?: true
+  departmentId?: true
+  jobPosition?: true
+  country?: true
+  city?: true
   firstName?: true
   lastName?: true
   avatarUrl?: true
+  gender?: true
+  startDate?: true
+  endDate?: true
   failedLoginAttempts?: true
   lockedUntil?: true
   createdAt?: true
@@ -162,10 +201,17 @@ export type UserCountAggregateInputType = {
   status?: true
   phoneNumber?: true
   birthdate?: true
-  companyId?: true
+  branchId?: true
+  departmentId?: true
+  jobPosition?: true
+  country?: true
+  city?: true
   firstName?: true
   lastName?: true
   avatarUrl?: true
+  gender?: true
+  startDate?: true
+  endDate?: true
   failedLoginAttempts?: true
   lockedUntil?: true
   createdAt?: true
@@ -269,10 +315,17 @@ export type UserGroupByOutputType = {
   status: $Enums.UserStatus
   phoneNumber: string
   birthdate: Date
-  companyId: number | null
+  branchId: number | null
+  departmentId: number | null
+  jobPosition: string | null
+  country: string | null
+  city: string | null
   firstName: string | null
   lastName: string | null
   avatarUrl: string | null
+  gender: string | null
+  startDate: Date | null
+  endDate: Date | null
   failedLoginAttempts: number
   lockedUntil: Date | null
   createdAt: Date
@@ -312,17 +365,24 @@ export type UserWhereInput = {
   status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
   phoneNumber?: Prisma.StringFilter<"User"> | string
   birthdate?: Prisma.DateTimeFilter<"User"> | Date | string
-  companyId?: Prisma.IntNullableFilter<"User"> | number | null
+  branchId?: Prisma.IntNullableFilter<"User"> | number | null
+  departmentId?: Prisma.IntNullableFilter<"User"> | number | null
+  jobPosition?: Prisma.StringNullableFilter<"User"> | string | null
+  country?: Prisma.StringNullableFilter<"User"> | string | null
+  city?: Prisma.StringNullableFilter<"User"> | string | null
   firstName?: Prisma.StringNullableFilter<"User"> | string | null
   lastName?: Prisma.StringNullableFilter<"User"> | string | null
   avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  gender?: Prisma.StringNullableFilter<"User"> | string | null
+  startDate?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  endDate?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   failedLoginAttempts?: Prisma.IntFilter<"User"> | number
   lockedUntil?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  company?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
+  branch?: Prisma.XOR<Prisma.BranchNullableScalarRelationFilter, Prisma.BranchWhereInput> | null
+  department?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
   activityLogs?: Prisma.ActivityLogListRelationFilter
-  notes?: Prisma.NoteListRelationFilter
   invitations?: Prisma.InvitationListRelationFilter
   emailVerifications?: Prisma.EmailVerificationListRelationFilter
 }
@@ -337,17 +397,24 @@ export type UserOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
   birthdate?: Prisma.SortOrder
-  companyId?: Prisma.SortOrderInput | Prisma.SortOrder
+  branchId?: Prisma.SortOrderInput | Prisma.SortOrder
+  departmentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  jobPosition?: Prisma.SortOrderInput | Prisma.SortOrder
+  country?: Prisma.SortOrderInput | Prisma.SortOrder
+  city?: Prisma.SortOrderInput | Prisma.SortOrder
   firstName?: Prisma.SortOrderInput | Prisma.SortOrder
   lastName?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  startDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  endDate?: Prisma.SortOrderInput | Prisma.SortOrder
   failedLoginAttempts?: Prisma.SortOrder
   lockedUntil?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  company?: Prisma.CompanyOrderByWithRelationInput
+  branch?: Prisma.BranchOrderByWithRelationInput
+  department?: Prisma.DepartmentOrderByWithRelationInput
   activityLogs?: Prisma.ActivityLogOrderByRelationAggregateInput
-  notes?: Prisma.NoteOrderByRelationAggregateInput
   invitations?: Prisma.InvitationOrderByRelationAggregateInput
   emailVerifications?: Prisma.EmailVerificationOrderByRelationAggregateInput
 }
@@ -365,17 +432,24 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
   phoneNumber?: Prisma.StringFilter<"User"> | string
   birthdate?: Prisma.DateTimeFilter<"User"> | Date | string
-  companyId?: Prisma.IntNullableFilter<"User"> | number | null
+  branchId?: Prisma.IntNullableFilter<"User"> | number | null
+  departmentId?: Prisma.IntNullableFilter<"User"> | number | null
+  jobPosition?: Prisma.StringNullableFilter<"User"> | string | null
+  country?: Prisma.StringNullableFilter<"User"> | string | null
+  city?: Prisma.StringNullableFilter<"User"> | string | null
   firstName?: Prisma.StringNullableFilter<"User"> | string | null
   lastName?: Prisma.StringNullableFilter<"User"> | string | null
   avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  gender?: Prisma.StringNullableFilter<"User"> | string | null
+  startDate?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  endDate?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   failedLoginAttempts?: Prisma.IntFilter<"User"> | number
   lockedUntil?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  company?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
+  branch?: Prisma.XOR<Prisma.BranchNullableScalarRelationFilter, Prisma.BranchWhereInput> | null
+  department?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
   activityLogs?: Prisma.ActivityLogListRelationFilter
-  notes?: Prisma.NoteListRelationFilter
   invitations?: Prisma.InvitationListRelationFilter
   emailVerifications?: Prisma.EmailVerificationListRelationFilter
 }, "id" | "email">
@@ -390,10 +464,17 @@ export type UserOrderByWithAggregationInput = {
   status?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
   birthdate?: Prisma.SortOrder
-  companyId?: Prisma.SortOrderInput | Prisma.SortOrder
+  branchId?: Prisma.SortOrderInput | Prisma.SortOrder
+  departmentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  jobPosition?: Prisma.SortOrderInput | Prisma.SortOrder
+  country?: Prisma.SortOrderInput | Prisma.SortOrder
+  city?: Prisma.SortOrderInput | Prisma.SortOrder
   firstName?: Prisma.SortOrderInput | Prisma.SortOrder
   lastName?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  startDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  endDate?: Prisma.SortOrderInput | Prisma.SortOrder
   failedLoginAttempts?: Prisma.SortOrder
   lockedUntil?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -418,10 +499,17 @@ export type UserScalarWhereWithAggregatesInput = {
   status?: Prisma.EnumUserStatusWithAggregatesFilter<"User"> | $Enums.UserStatus
   phoneNumber?: Prisma.StringWithAggregatesFilter<"User"> | string
   birthdate?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
-  companyId?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  branchId?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  departmentId?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  jobPosition?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  country?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  city?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   firstName?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   lastName?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   avatarUrl?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  gender?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  startDate?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  endDate?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   failedLoginAttempts?: Prisma.IntWithAggregatesFilter<"User"> | number
   lockedUntil?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -437,16 +525,22 @@ export type UserCreateInput = {
   status?: $Enums.UserStatus
   phoneNumber: string
   birthdate: Date | string
+  jobPosition?: string | null
+  country?: string | null
+  city?: string | null
   firstName?: string | null
   lastName?: string | null
   avatarUrl?: string | null
+  gender?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
   failedLoginAttempts?: number
   lockedUntil?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  company?: Prisma.CompanyCreateNestedOneWithoutUsersInput
+  branch?: Prisma.BranchCreateNestedOneWithoutUsersInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutUsersInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUsersInput
-  notes?: Prisma.NoteCreateNestedManyWithoutUsersInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutCreatedByInput
   emailVerifications?: Prisma.EmailVerificationCreateNestedManyWithoutUserInput
 }
@@ -461,16 +555,22 @@ export type UserUncheckedCreateInput = {
   status?: $Enums.UserStatus
   phoneNumber: string
   birthdate: Date | string
-  companyId?: number | null
+  branchId?: number | null
+  departmentId?: number | null
+  jobPosition?: string | null
+  country?: string | null
+  city?: string | null
   firstName?: string | null
   lastName?: string | null
   avatarUrl?: string | null
+  gender?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
   failedLoginAttempts?: number
   lockedUntil?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUsersInput
-  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutUsersInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutCreatedByInput
   emailVerifications?: Prisma.EmailVerificationUncheckedCreateNestedManyWithoutUserInput
 }
@@ -484,16 +584,22 @@ export type UserUpdateInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
   birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobPosition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
   lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  company?: Prisma.CompanyUpdateOneWithoutUsersNestedInput
+  branch?: Prisma.BranchUpdateOneWithoutUsersNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutUsersNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUsersNestedInput
-  notes?: Prisma.NoteUpdateManyWithoutUsersNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutCreatedByNestedInput
   emailVerifications?: Prisma.EmailVerificationUpdateManyWithoutUserNestedInput
 }
@@ -508,16 +614,22 @@ export type UserUncheckedUpdateInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
   birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  companyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  departmentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  jobPosition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
   lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUsersNestedInput
-  notes?: Prisma.NoteUncheckedUpdateManyWithoutUsersNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutCreatedByNestedInput
   emailVerifications?: Prisma.EmailVerificationUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -532,10 +644,17 @@ export type UserCreateManyInput = {
   status?: $Enums.UserStatus
   phoneNumber: string
   birthdate: Date | string
-  companyId?: number | null
+  branchId?: number | null
+  departmentId?: number | null
+  jobPosition?: string | null
+  country?: string | null
+  city?: string | null
   firstName?: string | null
   lastName?: string | null
   avatarUrl?: string | null
+  gender?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
   failedLoginAttempts?: number
   lockedUntil?: Date | string | null
   createdAt?: Date | string
@@ -551,9 +670,15 @@ export type UserUpdateManyMutationInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
   birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobPosition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
   lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -570,10 +695,17 @@ export type UserUncheckedUpdateManyInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
   birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  companyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  departmentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  jobPosition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
   lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -590,10 +722,17 @@ export type UserCountOrderByAggregateInput = {
   status?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
   birthdate?: Prisma.SortOrder
-  companyId?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
+  jobPosition?: Prisma.SortOrder
+  country?: Prisma.SortOrder
+  city?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
   failedLoginAttempts?: Prisma.SortOrder
   lockedUntil?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -602,7 +741,8 @@ export type UserCountOrderByAggregateInput = {
 
 export type UserAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  companyId?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
   failedLoginAttempts?: Prisma.SortOrder
 }
 
@@ -616,10 +756,17 @@ export type UserMaxOrderByAggregateInput = {
   status?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
   birthdate?: Prisma.SortOrder
-  companyId?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
+  jobPosition?: Prisma.SortOrder
+  country?: Prisma.SortOrder
+  city?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
   failedLoginAttempts?: Prisma.SortOrder
   lockedUntil?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -636,10 +783,17 @@ export type UserMinOrderByAggregateInput = {
   status?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
   birthdate?: Prisma.SortOrder
-  companyId?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
+  jobPosition?: Prisma.SortOrder
+  country?: Prisma.SortOrder
+  city?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
   failedLoginAttempts?: Prisma.SortOrder
   lockedUntil?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -648,7 +802,8 @@ export type UserMinOrderByAggregateInput = {
 
 export type UserSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  companyId?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
   failedLoginAttempts?: Prisma.SortOrder
 }
 
@@ -707,45 +862,87 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type UserCreateNestedManyWithoutCompanyInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCompanyInput, Prisma.UserUncheckedCreateWithoutCompanyInput> | Prisma.UserCreateWithoutCompanyInput[] | Prisma.UserUncheckedCreateWithoutCompanyInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCompanyInput | Prisma.UserCreateOrConnectWithoutCompanyInput[]
-  createMany?: Prisma.UserCreateManyCompanyInputEnvelope
+export type UserCreateNestedManyWithoutBranchInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBranchInput, Prisma.UserUncheckedCreateWithoutBranchInput> | Prisma.UserCreateWithoutBranchInput[] | Prisma.UserUncheckedCreateWithoutBranchInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBranchInput | Prisma.UserCreateOrConnectWithoutBranchInput[]
+  createMany?: Prisma.UserCreateManyBranchInputEnvelope
   connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
 }
 
-export type UserUncheckedCreateNestedManyWithoutCompanyInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCompanyInput, Prisma.UserUncheckedCreateWithoutCompanyInput> | Prisma.UserCreateWithoutCompanyInput[] | Prisma.UserUncheckedCreateWithoutCompanyInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCompanyInput | Prisma.UserCreateOrConnectWithoutCompanyInput[]
-  createMany?: Prisma.UserCreateManyCompanyInputEnvelope
+export type UserUncheckedCreateNestedManyWithoutBranchInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBranchInput, Prisma.UserUncheckedCreateWithoutBranchInput> | Prisma.UserCreateWithoutBranchInput[] | Prisma.UserUncheckedCreateWithoutBranchInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBranchInput | Prisma.UserCreateOrConnectWithoutBranchInput[]
+  createMany?: Prisma.UserCreateManyBranchInputEnvelope
   connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
 }
 
-export type UserUpdateManyWithoutCompanyNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCompanyInput, Prisma.UserUncheckedCreateWithoutCompanyInput> | Prisma.UserCreateWithoutCompanyInput[] | Prisma.UserUncheckedCreateWithoutCompanyInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCompanyInput | Prisma.UserCreateOrConnectWithoutCompanyInput[]
-  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutCompanyInput | Prisma.UserUpsertWithWhereUniqueWithoutCompanyInput[]
-  createMany?: Prisma.UserCreateManyCompanyInputEnvelope
+export type UserUpdateManyWithoutBranchNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBranchInput, Prisma.UserUncheckedCreateWithoutBranchInput> | Prisma.UserCreateWithoutBranchInput[] | Prisma.UserUncheckedCreateWithoutBranchInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBranchInput | Prisma.UserCreateOrConnectWithoutBranchInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutBranchInput | Prisma.UserUpsertWithWhereUniqueWithoutBranchInput[]
+  createMany?: Prisma.UserCreateManyBranchInputEnvelope
   set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
   disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
   delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
   connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  update?: Prisma.UserUpdateWithWhereUniqueWithoutCompanyInput | Prisma.UserUpdateWithWhereUniqueWithoutCompanyInput[]
-  updateMany?: Prisma.UserUpdateManyWithWhereWithoutCompanyInput | Prisma.UserUpdateManyWithWhereWithoutCompanyInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutBranchInput | Prisma.UserUpdateWithWhereUniqueWithoutBranchInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutBranchInput | Prisma.UserUpdateManyWithWhereWithoutBranchInput[]
   deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
 }
 
-export type UserUncheckedUpdateManyWithoutCompanyNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCompanyInput, Prisma.UserUncheckedCreateWithoutCompanyInput> | Prisma.UserCreateWithoutCompanyInput[] | Prisma.UserUncheckedCreateWithoutCompanyInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCompanyInput | Prisma.UserCreateOrConnectWithoutCompanyInput[]
-  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutCompanyInput | Prisma.UserUpsertWithWhereUniqueWithoutCompanyInput[]
-  createMany?: Prisma.UserCreateManyCompanyInputEnvelope
+export type UserUncheckedUpdateManyWithoutBranchNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBranchInput, Prisma.UserUncheckedCreateWithoutBranchInput> | Prisma.UserCreateWithoutBranchInput[] | Prisma.UserUncheckedCreateWithoutBranchInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBranchInput | Prisma.UserCreateOrConnectWithoutBranchInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutBranchInput | Prisma.UserUpsertWithWhereUniqueWithoutBranchInput[]
+  createMany?: Prisma.UserCreateManyBranchInputEnvelope
   set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
   disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
   delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
   connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  update?: Prisma.UserUpdateWithWhereUniqueWithoutCompanyInput | Prisma.UserUpdateWithWhereUniqueWithoutCompanyInput[]
-  updateMany?: Prisma.UserUpdateManyWithWhereWithoutCompanyInput | Prisma.UserUpdateManyWithWhereWithoutCompanyInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutBranchInput | Prisma.UserUpdateWithWhereUniqueWithoutBranchInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutBranchInput | Prisma.UserUpdateManyWithWhereWithoutBranchInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+}
+
+export type UserCreateNestedManyWithoutDepartmentInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDepartmentInput, Prisma.UserUncheckedCreateWithoutDepartmentInput> | Prisma.UserCreateWithoutDepartmentInput[] | Prisma.UserUncheckedCreateWithoutDepartmentInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDepartmentInput | Prisma.UserCreateOrConnectWithoutDepartmentInput[]
+  createMany?: Prisma.UserCreateManyDepartmentInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUncheckedCreateNestedManyWithoutDepartmentInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDepartmentInput, Prisma.UserUncheckedCreateWithoutDepartmentInput> | Prisma.UserCreateWithoutDepartmentInput[] | Prisma.UserUncheckedCreateWithoutDepartmentInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDepartmentInput | Prisma.UserCreateOrConnectWithoutDepartmentInput[]
+  createMany?: Prisma.UserCreateManyDepartmentInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUpdateManyWithoutDepartmentNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDepartmentInput, Prisma.UserUncheckedCreateWithoutDepartmentInput> | Prisma.UserCreateWithoutDepartmentInput[] | Prisma.UserUncheckedCreateWithoutDepartmentInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDepartmentInput | Prisma.UserCreateOrConnectWithoutDepartmentInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutDepartmentInput | Prisma.UserUpsertWithWhereUniqueWithoutDepartmentInput[]
+  createMany?: Prisma.UserCreateManyDepartmentInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutDepartmentInput | Prisma.UserUpdateWithWhereUniqueWithoutDepartmentInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutDepartmentInput | Prisma.UserUpdateManyWithWhereWithoutDepartmentInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+}
+
+export type UserUncheckedUpdateManyWithoutDepartmentNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDepartmentInput, Prisma.UserUncheckedCreateWithoutDepartmentInput> | Prisma.UserCreateWithoutDepartmentInput[] | Prisma.UserUncheckedCreateWithoutDepartmentInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDepartmentInput | Prisma.UserCreateOrConnectWithoutDepartmentInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutDepartmentInput | Prisma.UserUpsertWithWhereUniqueWithoutDepartmentInput[]
+  createMany?: Prisma.UserCreateManyDepartmentInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutDepartmentInput | Prisma.UserUpdateWithWhereUniqueWithoutDepartmentInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutDepartmentInput | Prisma.UserUpdateManyWithWhereWithoutDepartmentInput[]
   deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
 }
 
@@ -787,44 +984,6 @@ export type UserUncheckedUpdateManyWithoutActivityLogsNestedInput = {
   deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
 }
 
-export type UserCreateNestedManyWithoutNotesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutNotesInput, Prisma.UserUncheckedCreateWithoutNotesInput> | Prisma.UserCreateWithoutNotesInput[] | Prisma.UserUncheckedCreateWithoutNotesInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotesInput | Prisma.UserCreateOrConnectWithoutNotesInput[]
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-}
-
-export type UserUncheckedCreateNestedManyWithoutNotesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutNotesInput, Prisma.UserUncheckedCreateWithoutNotesInput> | Prisma.UserCreateWithoutNotesInput[] | Prisma.UserUncheckedCreateWithoutNotesInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotesInput | Prisma.UserCreateOrConnectWithoutNotesInput[]
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-}
-
-export type UserUpdateManyWithoutNotesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutNotesInput, Prisma.UserUncheckedCreateWithoutNotesInput> | Prisma.UserCreateWithoutNotesInput[] | Prisma.UserUncheckedCreateWithoutNotesInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotesInput | Prisma.UserCreateOrConnectWithoutNotesInput[]
-  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutNotesInput | Prisma.UserUpsertWithWhereUniqueWithoutNotesInput[]
-  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  update?: Prisma.UserUpdateWithWhereUniqueWithoutNotesInput | Prisma.UserUpdateWithWhereUniqueWithoutNotesInput[]
-  updateMany?: Prisma.UserUpdateManyWithWhereWithoutNotesInput | Prisma.UserUpdateManyWithWhereWithoutNotesInput[]
-  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
-}
-
-export type UserUncheckedUpdateManyWithoutNotesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutNotesInput, Prisma.UserUncheckedCreateWithoutNotesInput> | Prisma.UserCreateWithoutNotesInput[] | Prisma.UserUncheckedCreateWithoutNotesInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotesInput | Prisma.UserCreateOrConnectWithoutNotesInput[]
-  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutNotesInput | Prisma.UserUpsertWithWhereUniqueWithoutNotesInput[]
-  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  update?: Prisma.UserUpdateWithWhereUniqueWithoutNotesInput | Prisma.UserUpdateWithWhereUniqueWithoutNotesInput[]
-  updateMany?: Prisma.UserUpdateManyWithWhereWithoutNotesInput | Prisma.UserUpdateManyWithWhereWithoutNotesInput[]
-  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
-}
-
 export type UserCreateNestedOneWithoutInvitationsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutInvitationsInput, Prisma.UserUncheckedCreateWithoutInvitationsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutInvitationsInput
@@ -853,7 +1012,7 @@ export type UserUpdateOneRequiredWithoutEmailVerificationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutEmailVerificationsInput, Prisma.UserUpdateWithoutEmailVerificationsInput>, Prisma.UserUncheckedUpdateWithoutEmailVerificationsInput>
 }
 
-export type UserCreateWithoutCompanyInput = {
+export type UserCreateWithoutBranchInput = {
   email: string
   password?: string | null
   emailVerifiedAt?: Date | string | null
@@ -862,20 +1021,26 @@ export type UserCreateWithoutCompanyInput = {
   status?: $Enums.UserStatus
   phoneNumber: string
   birthdate: Date | string
+  jobPosition?: string | null
+  country?: string | null
+  city?: string | null
   firstName?: string | null
   lastName?: string | null
   avatarUrl?: string | null
+  gender?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
   failedLoginAttempts?: number
   lockedUntil?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  department?: Prisma.DepartmentCreateNestedOneWithoutUsersInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUsersInput
-  notes?: Prisma.NoteCreateNestedManyWithoutUsersInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutCreatedByInput
   emailVerifications?: Prisma.EmailVerificationCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutCompanyInput = {
+export type UserUncheckedCreateWithoutBranchInput = {
   id?: number
   email: string
   password?: string | null
@@ -885,43 +1050,49 @@ export type UserUncheckedCreateWithoutCompanyInput = {
   status?: $Enums.UserStatus
   phoneNumber: string
   birthdate: Date | string
+  departmentId?: number | null
+  jobPosition?: string | null
+  country?: string | null
+  city?: string | null
   firstName?: string | null
   lastName?: string | null
   avatarUrl?: string | null
+  gender?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
   failedLoginAttempts?: number
   lockedUntil?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUsersInput
-  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutUsersInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutCreatedByInput
   emailVerifications?: Prisma.EmailVerificationUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutCompanyInput = {
+export type UserCreateOrConnectWithoutBranchInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutCompanyInput, Prisma.UserUncheckedCreateWithoutCompanyInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBranchInput, Prisma.UserUncheckedCreateWithoutBranchInput>
 }
 
-export type UserCreateManyCompanyInputEnvelope = {
-  data: Prisma.UserCreateManyCompanyInput | Prisma.UserCreateManyCompanyInput[]
+export type UserCreateManyBranchInputEnvelope = {
+  data: Prisma.UserCreateManyBranchInput | Prisma.UserCreateManyBranchInput[]
   skipDuplicates?: boolean
 }
 
-export type UserUpsertWithWhereUniqueWithoutCompanyInput = {
+export type UserUpsertWithWhereUniqueWithoutBranchInput = {
   where: Prisma.UserWhereUniqueInput
-  update: Prisma.XOR<Prisma.UserUpdateWithoutCompanyInput, Prisma.UserUncheckedUpdateWithoutCompanyInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutCompanyInput, Prisma.UserUncheckedCreateWithoutCompanyInput>
+  update: Prisma.XOR<Prisma.UserUpdateWithoutBranchInput, Prisma.UserUncheckedUpdateWithoutBranchInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBranchInput, Prisma.UserUncheckedCreateWithoutBranchInput>
 }
 
-export type UserUpdateWithWhereUniqueWithoutCompanyInput = {
+export type UserUpdateWithWhereUniqueWithoutBranchInput = {
   where: Prisma.UserWhereUniqueInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutCompanyInput, Prisma.UserUncheckedUpdateWithoutCompanyInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutBranchInput, Prisma.UserUncheckedUpdateWithoutBranchInput>
 }
 
-export type UserUpdateManyWithWhereWithoutCompanyInput = {
+export type UserUpdateManyWithWhereWithoutBranchInput = {
   where: Prisma.UserScalarWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutCompanyInput>
+  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutBranchInput>
 }
 
 export type UserScalarWhereInput = {
@@ -937,14 +1108,104 @@ export type UserScalarWhereInput = {
   status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
   phoneNumber?: Prisma.StringFilter<"User"> | string
   birthdate?: Prisma.DateTimeFilter<"User"> | Date | string
-  companyId?: Prisma.IntNullableFilter<"User"> | number | null
+  branchId?: Prisma.IntNullableFilter<"User"> | number | null
+  departmentId?: Prisma.IntNullableFilter<"User"> | number | null
+  jobPosition?: Prisma.StringNullableFilter<"User"> | string | null
+  country?: Prisma.StringNullableFilter<"User"> | string | null
+  city?: Prisma.StringNullableFilter<"User"> | string | null
   firstName?: Prisma.StringNullableFilter<"User"> | string | null
   lastName?: Prisma.StringNullableFilter<"User"> | string | null
   avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  gender?: Prisma.StringNullableFilter<"User"> | string | null
+  startDate?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  endDate?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   failedLoginAttempts?: Prisma.IntFilter<"User"> | number
   lockedUntil?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+}
+
+export type UserCreateWithoutDepartmentInput = {
+  email: string
+  password?: string | null
+  emailVerifiedAt?: Date | string | null
+  lastLoginAt?: Date | string | null
+  role: $Enums.Role
+  status?: $Enums.UserStatus
+  phoneNumber: string
+  birthdate: Date | string
+  jobPosition?: string | null
+  country?: string | null
+  city?: string | null
+  firstName?: string | null
+  lastName?: string | null
+  avatarUrl?: string | null
+  gender?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  branch?: Prisma.BranchCreateNestedOneWithoutUsersInput
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUsersInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutCreatedByInput
+  emailVerifications?: Prisma.EmailVerificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutDepartmentInput = {
+  id?: number
+  email: string
+  password?: string | null
+  emailVerifiedAt?: Date | string | null
+  lastLoginAt?: Date | string | null
+  role: $Enums.Role
+  status?: $Enums.UserStatus
+  phoneNumber: string
+  birthdate: Date | string
+  branchId?: number | null
+  jobPosition?: string | null
+  country?: string | null
+  city?: string | null
+  firstName?: string | null
+  lastName?: string | null
+  avatarUrl?: string | null
+  gender?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUsersInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutCreatedByInput
+  emailVerifications?: Prisma.EmailVerificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutDepartmentInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDepartmentInput, Prisma.UserUncheckedCreateWithoutDepartmentInput>
+}
+
+export type UserCreateManyDepartmentInputEnvelope = {
+  data: Prisma.UserCreateManyDepartmentInput | Prisma.UserCreateManyDepartmentInput[]
+  skipDuplicates?: boolean
+}
+
+export type UserUpsertWithWhereUniqueWithoutDepartmentInput = {
+  where: Prisma.UserWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDepartmentInput, Prisma.UserUncheckedUpdateWithoutDepartmentInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDepartmentInput, Prisma.UserUncheckedCreateWithoutDepartmentInput>
+}
+
+export type UserUpdateWithWhereUniqueWithoutDepartmentInput = {
+  where: Prisma.UserWhereUniqueInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDepartmentInput, Prisma.UserUncheckedUpdateWithoutDepartmentInput>
+}
+
+export type UserUpdateManyWithWhereWithoutDepartmentInput = {
+  where: Prisma.UserScalarWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutDepartmentInput>
 }
 
 export type UserCreateWithoutActivityLogsInput = {
@@ -956,15 +1217,21 @@ export type UserCreateWithoutActivityLogsInput = {
   status?: $Enums.UserStatus
   phoneNumber: string
   birthdate: Date | string
+  jobPosition?: string | null
+  country?: string | null
+  city?: string | null
   firstName?: string | null
   lastName?: string | null
   avatarUrl?: string | null
+  gender?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
   failedLoginAttempts?: number
   lockedUntil?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  company?: Prisma.CompanyCreateNestedOneWithoutUsersInput
-  notes?: Prisma.NoteCreateNestedManyWithoutUsersInput
+  branch?: Prisma.BranchCreateNestedOneWithoutUsersInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutUsersInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutCreatedByInput
   emailVerifications?: Prisma.EmailVerificationCreateNestedManyWithoutUserInput
 }
@@ -979,15 +1246,21 @@ export type UserUncheckedCreateWithoutActivityLogsInput = {
   status?: $Enums.UserStatus
   phoneNumber: string
   birthdate: Date | string
-  companyId?: number | null
+  branchId?: number | null
+  departmentId?: number | null
+  jobPosition?: string | null
+  country?: string | null
+  city?: string | null
   firstName?: string | null
   lastName?: string | null
   avatarUrl?: string | null
+  gender?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
   failedLoginAttempts?: number
   lockedUntil?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutUsersInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutCreatedByInput
   emailVerifications?: Prisma.EmailVerificationUncheckedCreateNestedManyWithoutUserInput
 }
@@ -1013,72 +1286,6 @@ export type UserUpdateManyWithWhereWithoutActivityLogsInput = {
   data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutActivityLogsInput>
 }
 
-export type UserCreateWithoutNotesInput = {
-  email: string
-  password?: string | null
-  emailVerifiedAt?: Date | string | null
-  lastLoginAt?: Date | string | null
-  role: $Enums.Role
-  status?: $Enums.UserStatus
-  phoneNumber: string
-  birthdate: Date | string
-  firstName?: string | null
-  lastName?: string | null
-  avatarUrl?: string | null
-  failedLoginAttempts?: number
-  lockedUntil?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  company?: Prisma.CompanyCreateNestedOneWithoutUsersInput
-  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUsersInput
-  invitations?: Prisma.InvitationCreateNestedManyWithoutCreatedByInput
-  emailVerifications?: Prisma.EmailVerificationCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutNotesInput = {
-  id?: number
-  email: string
-  password?: string | null
-  emailVerifiedAt?: Date | string | null
-  lastLoginAt?: Date | string | null
-  role: $Enums.Role
-  status?: $Enums.UserStatus
-  phoneNumber: string
-  birthdate: Date | string
-  companyId?: number | null
-  firstName?: string | null
-  lastName?: string | null
-  avatarUrl?: string | null
-  failedLoginAttempts?: number
-  lockedUntil?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUsersInput
-  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutCreatedByInput
-  emailVerifications?: Prisma.EmailVerificationUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutNotesInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutNotesInput, Prisma.UserUncheckedCreateWithoutNotesInput>
-}
-
-export type UserUpsertWithWhereUniqueWithoutNotesInput = {
-  where: Prisma.UserWhereUniqueInput
-  update: Prisma.XOR<Prisma.UserUpdateWithoutNotesInput, Prisma.UserUncheckedUpdateWithoutNotesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutNotesInput, Prisma.UserUncheckedCreateWithoutNotesInput>
-}
-
-export type UserUpdateWithWhereUniqueWithoutNotesInput = {
-  where: Prisma.UserWhereUniqueInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutNotesInput, Prisma.UserUncheckedUpdateWithoutNotesInput>
-}
-
-export type UserUpdateManyWithWhereWithoutNotesInput = {
-  where: Prisma.UserScalarWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutNotesInput>
-}
-
 export type UserCreateWithoutInvitationsInput = {
   email: string
   password?: string | null
@@ -1088,16 +1295,22 @@ export type UserCreateWithoutInvitationsInput = {
   status?: $Enums.UserStatus
   phoneNumber: string
   birthdate: Date | string
+  jobPosition?: string | null
+  country?: string | null
+  city?: string | null
   firstName?: string | null
   lastName?: string | null
   avatarUrl?: string | null
+  gender?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
   failedLoginAttempts?: number
   lockedUntil?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  company?: Prisma.CompanyCreateNestedOneWithoutUsersInput
+  branch?: Prisma.BranchCreateNestedOneWithoutUsersInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutUsersInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUsersInput
-  notes?: Prisma.NoteCreateNestedManyWithoutUsersInput
   emailVerifications?: Prisma.EmailVerificationCreateNestedManyWithoutUserInput
 }
 
@@ -1111,16 +1324,22 @@ export type UserUncheckedCreateWithoutInvitationsInput = {
   status?: $Enums.UserStatus
   phoneNumber: string
   birthdate: Date | string
-  companyId?: number | null
+  branchId?: number | null
+  departmentId?: number | null
+  jobPosition?: string | null
+  country?: string | null
+  city?: string | null
   firstName?: string | null
   lastName?: string | null
   avatarUrl?: string | null
+  gender?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
   failedLoginAttempts?: number
   lockedUntil?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUsersInput
-  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutUsersInput
   emailVerifications?: Prisma.EmailVerificationUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -1149,16 +1368,22 @@ export type UserUpdateWithoutInvitationsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
   birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobPosition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
   lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  company?: Prisma.CompanyUpdateOneWithoutUsersNestedInput
+  branch?: Prisma.BranchUpdateOneWithoutUsersNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutUsersNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUsersNestedInput
-  notes?: Prisma.NoteUpdateManyWithoutUsersNestedInput
   emailVerifications?: Prisma.EmailVerificationUpdateManyWithoutUserNestedInput
 }
 
@@ -1172,16 +1397,22 @@ export type UserUncheckedUpdateWithoutInvitationsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
   birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  companyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  departmentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  jobPosition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
   lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUsersNestedInput
-  notes?: Prisma.NoteUncheckedUpdateManyWithoutUsersNestedInput
   emailVerifications?: Prisma.EmailVerificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -1194,16 +1425,22 @@ export type UserCreateWithoutEmailVerificationsInput = {
   status?: $Enums.UserStatus
   phoneNumber: string
   birthdate: Date | string
+  jobPosition?: string | null
+  country?: string | null
+  city?: string | null
   firstName?: string | null
   lastName?: string | null
   avatarUrl?: string | null
+  gender?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
   failedLoginAttempts?: number
   lockedUntil?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  company?: Prisma.CompanyCreateNestedOneWithoutUsersInput
+  branch?: Prisma.BranchCreateNestedOneWithoutUsersInput
+  department?: Prisma.DepartmentCreateNestedOneWithoutUsersInput
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUsersInput
-  notes?: Prisma.NoteCreateNestedManyWithoutUsersInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutCreatedByInput
 }
 
@@ -1217,16 +1454,22 @@ export type UserUncheckedCreateWithoutEmailVerificationsInput = {
   status?: $Enums.UserStatus
   phoneNumber: string
   birthdate: Date | string
-  companyId?: number | null
+  branchId?: number | null
+  departmentId?: number | null
+  jobPosition?: string | null
+  country?: string | null
+  city?: string | null
   firstName?: string | null
   lastName?: string | null
   avatarUrl?: string | null
+  gender?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
   failedLoginAttempts?: number
   lockedUntil?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUsersInput
-  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutUsersInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
@@ -1255,16 +1498,22 @@ export type UserUpdateWithoutEmailVerificationsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
   birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobPosition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
   lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  company?: Prisma.CompanyUpdateOneWithoutUsersNestedInput
+  branch?: Prisma.BranchUpdateOneWithoutUsersNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutUsersNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUsersNestedInput
-  notes?: Prisma.NoteUpdateManyWithoutUsersNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -1278,20 +1527,26 @@ export type UserUncheckedUpdateWithoutEmailVerificationsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
   birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  companyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  departmentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  jobPosition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
   lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUsersNestedInput
-  notes?: Prisma.NoteUncheckedUpdateManyWithoutUsersNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
-export type UserCreateManyCompanyInput = {
+export type UserCreateManyBranchInput = {
   id?: number
   email: string
   password?: string | null
@@ -1301,16 +1556,23 @@ export type UserCreateManyCompanyInput = {
   status?: $Enums.UserStatus
   phoneNumber: string
   birthdate: Date | string
+  departmentId?: number | null
+  jobPosition?: string | null
+  country?: string | null
+  city?: string | null
   firstName?: string | null
   lastName?: string | null
   avatarUrl?: string | null
+  gender?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
   failedLoginAttempts?: number
   lockedUntil?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
-export type UserUpdateWithoutCompanyInput = {
+export type UserUpdateWithoutBranchInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1319,20 +1581,26 @@ export type UserUpdateWithoutCompanyInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
   birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobPosition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
   lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  department?: Prisma.DepartmentUpdateOneWithoutUsersNestedInput
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUsersNestedInput
-  notes?: Prisma.NoteUpdateManyWithoutUsersNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutCreatedByNestedInput
   emailVerifications?: Prisma.EmailVerificationUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutCompanyInput = {
+export type UserUncheckedUpdateWithoutBranchInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1342,20 +1610,26 @@ export type UserUncheckedUpdateWithoutCompanyInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
   birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departmentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  jobPosition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
   lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUsersNestedInput
-  notes?: Prisma.NoteUncheckedUpdateManyWithoutUsersNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutCreatedByNestedInput
   emailVerifications?: Prisma.EmailVerificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateManyWithoutCompanyInput = {
+export type UserUncheckedUpdateManyWithoutBranchInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1365,9 +1639,125 @@ export type UserUncheckedUpdateManyWithoutCompanyInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
   birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  departmentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  jobPosition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type UserCreateManyDepartmentInput = {
+  id?: number
+  email: string
+  password?: string | null
+  emailVerifiedAt?: Date | string | null
+  lastLoginAt?: Date | string | null
+  role: $Enums.Role
+  status?: $Enums.UserStatus
+  phoneNumber: string
+  birthdate: Date | string
+  branchId?: number | null
+  jobPosition?: string | null
+  country?: string | null
+  city?: string | null
+  firstName?: string | null
+  lastName?: string | null
+  avatarUrl?: string | null
+  gender?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type UserUpdateWithoutDepartmentInput = {
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobPosition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branch?: Prisma.BranchUpdateOneWithoutUsersNestedInput
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutUsersNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutCreatedByNestedInput
+  emailVerifications?: Prisma.EmailVerificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDepartmentInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  jobPosition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUsersNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutCreatedByNestedInput
+  emailVerifications?: Prisma.EmailVerificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateManyWithoutDepartmentInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  jobPosition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
   lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1383,15 +1773,21 @@ export type UserUpdateWithoutActivityLogsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
   birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobPosition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
   lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  company?: Prisma.CompanyUpdateOneWithoutUsersNestedInput
-  notes?: Prisma.NoteUpdateManyWithoutUsersNestedInput
+  branch?: Prisma.BranchUpdateOneWithoutUsersNestedInput
+  department?: Prisma.DepartmentUpdateOneWithoutUsersNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutCreatedByNestedInput
   emailVerifications?: Prisma.EmailVerificationUpdateManyWithoutUserNestedInput
 }
@@ -1406,15 +1802,21 @@ export type UserUncheckedUpdateWithoutActivityLogsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
   birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  companyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  departmentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  jobPosition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
   lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  notes?: Prisma.NoteUncheckedUpdateManyWithoutUsersNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutCreatedByNestedInput
   emailVerifications?: Prisma.EmailVerificationUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -1429,75 +1831,17 @@ export type UserUncheckedUpdateManyWithoutActivityLogsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
   birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  companyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  departmentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  jobPosition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
-  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type UserUpdateWithoutNotesInput = {
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
-  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  company?: Prisma.CompanyUpdateOneWithoutUsersNestedInput
-  activityLogs?: Prisma.ActivityLogUpdateManyWithoutUsersNestedInput
-  invitations?: Prisma.InvitationUpdateManyWithoutCreatedByNestedInput
-  emailVerifications?: Prisma.EmailVerificationUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutNotesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  companyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
-  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUsersNestedInput
-  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutCreatedByNestedInput
-  emailVerifications?: Prisma.EmailVerificationUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateManyWithoutNotesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  birthdate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  companyId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
   lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1511,14 +1855,12 @@ export type UserUncheckedUpdateManyWithoutNotesInput = {
 
 export type UserCountOutputType = {
   activityLogs: number
-  notes: number
   invitations: number
   emailVerifications: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   activityLogs?: boolean | UserCountOutputTypeCountActivityLogsArgs
-  notes?: boolean | UserCountOutputTypeCountNotesArgs
   invitations?: boolean | UserCountOutputTypeCountInvitationsArgs
   emailVerifications?: boolean | UserCountOutputTypeCountEmailVerificationsArgs
 }
@@ -1538,13 +1880,6 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
  */
 export type UserCountOutputTypeCountActivityLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ActivityLogWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountNotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.NoteWhereInput
 }
 
 /**
@@ -1572,17 +1907,24 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   status?: boolean
   phoneNumber?: boolean
   birthdate?: boolean
-  companyId?: boolean
+  branchId?: boolean
+  departmentId?: boolean
+  jobPosition?: boolean
+  country?: boolean
+  city?: boolean
   firstName?: boolean
   lastName?: boolean
   avatarUrl?: boolean
+  gender?: boolean
+  startDate?: boolean
+  endDate?: boolean
   failedLoginAttempts?: boolean
   lockedUntil?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  company?: boolean | Prisma.User$companyArgs<ExtArgs>
+  branch?: boolean | Prisma.User$branchArgs<ExtArgs>
+  department?: boolean | Prisma.User$departmentArgs<ExtArgs>
   activityLogs?: boolean | Prisma.User$activityLogsArgs<ExtArgs>
-  notes?: boolean | Prisma.User$notesArgs<ExtArgs>
   invitations?: boolean | Prisma.User$invitationsArgs<ExtArgs>
   emailVerifications?: boolean | Prisma.User$emailVerificationsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1598,15 +1940,23 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   status?: boolean
   phoneNumber?: boolean
   birthdate?: boolean
-  companyId?: boolean
+  branchId?: boolean
+  departmentId?: boolean
+  jobPosition?: boolean
+  country?: boolean
+  city?: boolean
   firstName?: boolean
   lastName?: boolean
   avatarUrl?: boolean
+  gender?: boolean
+  startDate?: boolean
+  endDate?: boolean
   failedLoginAttempts?: boolean
   lockedUntil?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  company?: boolean | Prisma.User$companyArgs<ExtArgs>
+  branch?: boolean | Prisma.User$branchArgs<ExtArgs>
+  department?: boolean | Prisma.User$departmentArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1619,15 +1969,23 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   status?: boolean
   phoneNumber?: boolean
   birthdate?: boolean
-  companyId?: boolean
+  branchId?: boolean
+  departmentId?: boolean
+  jobPosition?: boolean
+  country?: boolean
+  city?: boolean
   firstName?: boolean
   lastName?: boolean
   avatarUrl?: boolean
+  gender?: boolean
+  startDate?: boolean
+  endDate?: boolean
   failedLoginAttempts?: boolean
   lockedUntil?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  company?: boolean | Prisma.User$companyArgs<ExtArgs>
+  branch?: boolean | Prisma.User$branchArgs<ExtArgs>
+  department?: boolean | Prisma.User$departmentArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -1640,38 +1998,47 @@ export type UserSelectScalar = {
   status?: boolean
   phoneNumber?: boolean
   birthdate?: boolean
-  companyId?: boolean
+  branchId?: boolean
+  departmentId?: boolean
+  jobPosition?: boolean
+  country?: boolean
+  city?: boolean
   firstName?: boolean
   lastName?: boolean
   avatarUrl?: boolean
+  gender?: boolean
+  startDate?: boolean
+  endDate?: boolean
   failedLoginAttempts?: boolean
   lockedUntil?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "emailVerifiedAt" | "lastLoginAt" | "role" | "status" | "phoneNumber" | "birthdate" | "companyId" | "firstName" | "lastName" | "avatarUrl" | "failedLoginAttempts" | "lockedUntil" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "emailVerifiedAt" | "lastLoginAt" | "role" | "status" | "phoneNumber" | "birthdate" | "branchId" | "departmentId" | "jobPosition" | "country" | "city" | "firstName" | "lastName" | "avatarUrl" | "gender" | "startDate" | "endDate" | "failedLoginAttempts" | "lockedUntil" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  company?: boolean | Prisma.User$companyArgs<ExtArgs>
+  branch?: boolean | Prisma.User$branchArgs<ExtArgs>
+  department?: boolean | Prisma.User$departmentArgs<ExtArgs>
   activityLogs?: boolean | Prisma.User$activityLogsArgs<ExtArgs>
-  notes?: boolean | Prisma.User$notesArgs<ExtArgs>
   invitations?: boolean | Prisma.User$invitationsArgs<ExtArgs>
   emailVerifications?: boolean | Prisma.User$emailVerificationsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  company?: boolean | Prisma.User$companyArgs<ExtArgs>
+  branch?: boolean | Prisma.User$branchArgs<ExtArgs>
+  department?: boolean | Prisma.User$departmentArgs<ExtArgs>
 }
 export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  company?: boolean | Prisma.User$companyArgs<ExtArgs>
+  branch?: boolean | Prisma.User$branchArgs<ExtArgs>
+  department?: boolean | Prisma.User$departmentArgs<ExtArgs>
 }
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    company: Prisma.$CompanyPayload<ExtArgs> | null
+    branch: Prisma.$BranchPayload<ExtArgs> | null
+    department: Prisma.$DepartmentPayload<ExtArgs> | null
     activityLogs: Prisma.$ActivityLogPayload<ExtArgs>[]
-    notes: Prisma.$NotePayload<ExtArgs>[]
     invitations: Prisma.$InvitationPayload<ExtArgs>[]
     emailVerifications: Prisma.$EmailVerificationPayload<ExtArgs>[]
   }
@@ -1685,10 +2052,17 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     status: $Enums.UserStatus
     phoneNumber: string
     birthdate: Date
-    companyId: number | null
+    branchId: number | null
+    departmentId: number | null
+    jobPosition: string | null
+    country: string | null
+    city: string | null
     firstName: string | null
     lastName: string | null
     avatarUrl: string | null
+    gender: string | null
+    startDate: Date | null
+    endDate: Date | null
     failedLoginAttempts: number
     lockedUntil: Date | null
     createdAt: Date
@@ -2087,9 +2461,9 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  company<T extends Prisma.User$companyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$companyArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  branch<T extends Prisma.User$branchArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$branchArgs<ExtArgs>>): Prisma.Prisma__BranchClient<runtime.Types.Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  department<T extends Prisma.User$departmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$departmentArgs<ExtArgs>>): Prisma.Prisma__DepartmentClient<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   activityLogs<T extends Prisma.User$activityLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$activityLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  notes<T extends Prisma.User$notesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invitations<T extends Prisma.User$invitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   emailVerifications<T extends Prisma.User$emailVerificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$emailVerificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmailVerificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -2130,10 +2504,17 @@ export interface UserFieldRefs {
   readonly status: Prisma.FieldRef<"User", 'UserStatus'>
   readonly phoneNumber: Prisma.FieldRef<"User", 'String'>
   readonly birthdate: Prisma.FieldRef<"User", 'DateTime'>
-  readonly companyId: Prisma.FieldRef<"User", 'Int'>
+  readonly branchId: Prisma.FieldRef<"User", 'Int'>
+  readonly departmentId: Prisma.FieldRef<"User", 'Int'>
+  readonly jobPosition: Prisma.FieldRef<"User", 'String'>
+  readonly country: Prisma.FieldRef<"User", 'String'>
+  readonly city: Prisma.FieldRef<"User", 'String'>
   readonly firstName: Prisma.FieldRef<"User", 'String'>
   readonly lastName: Prisma.FieldRef<"User", 'String'>
   readonly avatarUrl: Prisma.FieldRef<"User", 'String'>
+  readonly gender: Prisma.FieldRef<"User", 'String'>
+  readonly startDate: Prisma.FieldRef<"User", 'DateTime'>
+  readonly endDate: Prisma.FieldRef<"User", 'DateTime'>
   readonly failedLoginAttempts: Prisma.FieldRef<"User", 'Int'>
   readonly lockedUntil: Prisma.FieldRef<"User", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
@@ -2534,22 +2915,41 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.company
+ * User.branch
  */
-export type User$companyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$branchArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Company
+   * Select specific fields to fetch from the Branch
    */
-  select?: Prisma.CompanySelect<ExtArgs> | null
+  select?: Prisma.BranchSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Company
+   * Omit specific fields from the Branch
    */
-  omit?: Prisma.CompanyOmit<ExtArgs> | null
+  omit?: Prisma.BranchOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.CompanyInclude<ExtArgs> | null
-  where?: Prisma.CompanyWhereInput
+  include?: Prisma.BranchInclude<ExtArgs> | null
+  where?: Prisma.BranchWhereInput
+}
+
+/**
+ * User.department
+ */
+export type User$departmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Department
+   */
+  select?: Prisma.DepartmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Department
+   */
+  omit?: Prisma.DepartmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DepartmentInclude<ExtArgs> | null
+  where?: Prisma.DepartmentWhereInput
 }
 
 /**
@@ -2574,30 +2974,6 @@ export type User$activityLogsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.ActivityLogScalarFieldEnum | Prisma.ActivityLogScalarFieldEnum[]
-}
-
-/**
- * User.notes
- */
-export type User$notesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Note
-   */
-  select?: Prisma.NoteSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Note
-   */
-  omit?: Prisma.NoteOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.NoteInclude<ExtArgs> | null
-  where?: Prisma.NoteWhereInput
-  orderBy?: Prisma.NoteOrderByWithRelationInput | Prisma.NoteOrderByWithRelationInput[]
-  cursor?: Prisma.NoteWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.NoteScalarFieldEnum | Prisma.NoteScalarFieldEnum[]
 }
 
 /**

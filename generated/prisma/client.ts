@@ -43,20 +43,20 @@ export { Prisma }
  */
 export type User = Prisma.UserModel
 /**
- * Model Company
+ * Model Branch
  * 
  */
-export type Company = Prisma.CompanyModel
+export type Branch = Prisma.BranchModel
+/**
+ * Model Department
+ * 
+ */
+export type Department = Prisma.DepartmentModel
 /**
  * Model ActivityLog
  * 
  */
 export type ActivityLog = Prisma.ActivityLogModel
-/**
- * Model Note
- * 
- */
-export type Note = Prisma.NoteModel
 /**
  * Model Invitation
  * 

@@ -19,10 +19,11 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-"prisma:migrate:dev": "dotenv -e .env.development -- npx prisma migrate dev",
-  "prisma:migrate:staging": "dotenv -e .env.staging -- npx prisma migrate deploy",
-  "prisma:migrate:prod": "dotenv -e .env.production -- npx prisma migrate deploy",
-  "prisma:generate": "dotenv -e .env.development -- npx prisma generate"
+
+    "prisma:migration:create": "dotenv -e .env.development -- npx prisma migrate dev --name",
+    "prisma:migration:generate": "dotenv -e .env.development -- npx prisma migrate dev",
+    "prisma:migrate:dev": "dotenv -e .env.development -- npx prisma migrate deploy",
+    "prisma:migrate:prod": "dotenv -e .env.production -- npx prisma migrate deploy"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.975.0",

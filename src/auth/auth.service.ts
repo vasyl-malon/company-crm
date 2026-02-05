@@ -199,7 +199,14 @@ export class AuthService {
 
     return {
       token,
-      user: { email: user.email, id: user.id },
+      user: {
+        email: user.email,
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role,
+        avatarUrl: user.avatarUrl,
+      },
     };
   }
 

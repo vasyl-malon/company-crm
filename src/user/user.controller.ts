@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { UserService } from './user.service';
 
@@ -8,7 +8,7 @@ export class UserController {
   constructor(private authService: UserService) {}
 
   @Get()
-  async getUsers() {
-    return this.authService.getUsers();
+  async getUsers(@Query('page') page: number, @Query('limit') limit: number) {
+    return this.authService.getUsers({ page, limit });
   }
 }
