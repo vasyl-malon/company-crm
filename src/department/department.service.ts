@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateDepartmentDto } from './dto/create-department-dto';
-import { DeleteDepartmentDto } from './dto/delete-department-dto';
 
 @Injectable()
 export class DepartmentService {
@@ -19,8 +18,6 @@ export class DepartmentService {
 
   async getAll(query: any) {
     const { page = 0, limit = 10, search } = query;
-
-    console.log(search)
 
     const [items, total] = await this.prisma.$transaction([
       this.prisma.department.findMany({

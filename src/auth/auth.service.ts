@@ -3,12 +3,13 @@ import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { randomBytes } from 'crypto';
-import { CodeType, Role, UserStatus } from '@prisma/client';
+import { CodeType, UserStatus } from '@prisma/client';
 import { LoginUserDto } from './dto/login-user-dto';
 import { OtpDto } from './dto/otp-dto';
 import { MailService } from 'src/integrations/mail/mail.service';
 import { InviteUserDto } from './dto/invite-user';
 import { CompleteRegistrationDto } from './dto/complete-registration-dto';
+import { IS_PROD } from 'src/constants';
 
 const MAX_ATTEMPTS = 5;
 const LOCK_MINUTES = 15;
@@ -18,7 +19,7 @@ export class AuthService {
   constructor(
     private prisma: PrismaService,
     private mail: MailService,
-  ) {}
+  ) { }
 
   async hashPassword(password: string): Promise<string> {
     const salt = await bcrypt.genSalt();
@@ -130,7 +131,7 @@ export class AuthService {
       data: { failedLoginAttempts: 0, lockedUntil: null },
     });
 
-    const otp = Math.floor(1000 + Math.random() * 9000).toString();
+    const otp = IS_PROD ? Math.floor(1000 + Math.random() * 9000).toString() : '3213'
     const otpHash = await bcrypt.hash(otp, 10);
     const expiresAt = new Date(now.getTime() + 5 * 60 * 1000); // 5 minutes TTL
 
@@ -144,7 +145,7 @@ export class AuthService {
       },
     });
 
-    await this.mail.sendLoginCode(user.email, otp).catch((e) => console.error(e));
+    if (IS_PROD) await this.mail.sendLoginCode(user.email, otp).catch((e) => console.error(e));
 
     return { verificationId: verification.id };
   }
