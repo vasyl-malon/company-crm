@@ -19,24 +19,11 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-
-
-  "prisma:migrate:dev": "npx prisma migrate dev --name",
-  "prisma:generate": "npx prisma generate",
-  "prisma:pull:dev": "dotenv -e .env.development -- npx prisma db pull",
-  "prisma:deploy:dev": "dotenv -e .env.development -- npx prisma migrate deploy",
-  "prisma:deploy:prod": "dotenv -e .env.production -- npx prisma migrate deploy",
-
-
-    "prisma:dev:migrate": "dotenv -e .env.development -- npx prisma migrate dev --name",
-    "prisma:dev:status": "dotenv -e .env.development -- npx prisma migrate status",
-    "prisma:studio:dev": "dotenv -e .env.development -- npx prisma studio",
-
-    "prisma:prod:deploy": "dotenv -e .env.production -- npx prisma migrate deploy",
-    "prisma:prod:status": "dotenv -e .env.production -- npx prisma migrate status",
-
-    "prisma:reset": "dotenv -e .env.development -- npx prisma db push --force-reset",
-    "prisma:sd": "dotenv -e .env.development -- npx prisma migrate reset",
+    "prisma:migrate:dev": "npx prisma migrate dev --name",
+    "prisma:generate": "npx prisma generate",
+    "prisma:pull:dev": "dotenv -e .env.development -- npx prisma db pull",
+    "prisma:deploy:dev": "dotenv -e .env.development -- npx prisma migrate deploy",
+    "prisma:deploy:prod": "dotenv -e .env.production -- npx prisma migrate deploy",
     "seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {

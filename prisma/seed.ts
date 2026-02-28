@@ -1,16 +1,16 @@
-import { PrismaClient, Role, UserStatus, BranchStatus } from "../generated/prisma/client";
+import { PrismaClient, Role, UserStatus, BranchStatus } from '@prisma/client';
 import * as bcrypt from "bcrypt";
 
 import { PrismaPg } from '@prisma/adapter-pg';
 
 const adapter = new PrismaPg({
-  connectionString: "postgresql://neondb_owner:npg_xlMwIL5TQ0Jp@ep-plain-tree-abndqc8g-pooler.eu-west-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
+  connectionString: process.env.DATABASE_URL,
 });
 
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  console.log("🌱 Seeding...", process.env.DATABASE_URL);
+  console.log("🌱 Seeding...");
 
   // 🔹 1. Branch
   const branch = await prisma.branch.upsert({
