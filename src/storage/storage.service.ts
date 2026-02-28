@@ -9,6 +9,8 @@ export class StorageService {
     const fileExt = extname(file.originalname);
     const fileName = `image-${Date.now()}${fileExt}`;
 
+    console.log(process.env.S3_REGION)
+
     const command = new PutObjectCommand({
       Bucket: process.env.S3_BUCKET_NAME,
       Key: fileName,
@@ -18,11 +20,10 @@ export class StorageService {
 
     try {
       await s3Client.send(command);
-
       const publicUrl = `${process.env.STORAGE_ENDPOINT}/object/public/${process.env.S3_BUCKET_NAME}/${fileName}`;
       return publicUrl;
     } catch (error) {
-      throw new Error(`Error: ${error.message}`);
+      throw new Error(`Error: ${error}`);
     }
   }
 }

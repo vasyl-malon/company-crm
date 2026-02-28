@@ -3,7 +3,7 @@ import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { randomBytes } from 'crypto';
-import { CodeType, Role, UserStatus } from 'generated/prisma/enums';
+import { CodeType, Role, UserStatus } from '@prisma/client';
 import { LoginUserDto } from './dto/login-user-dto';
 import { OtpDto } from './dto/otp-dto';
 import { MailService } from 'src/integrations/mail/mail.service';
@@ -210,33 +210,70 @@ export class AuthService {
     };
   }
 
-  async sendInvitation(body: InviteUserDto, id: number) {
-    console.log(body);
+  async sendInvitation(body: InviteUserDto, adminId: number) {
+    // 1️⃣ Перевірка чи користувач вже існує
+    const existingUser = await this.prisma.user.findUnique({
+      where: { email: body.email },
+    });
+
+    if (existingUser) {
+      throw new BadRequestException('User already exists');
+    }
+
     const token = this.generateInvitationToken();
 
-    await this.prisma.invitation.create({
-      data: {
-        email: body.email,
-        token,
-        role: body.role,
-        createdById: id,
-        expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000),
-      },
-    });
+    return await this.prisma
+      .$transaction(async (tx) => {
+        // 2️⃣ Створюємо User зі статусом PENDING
+        const user = await tx.user.create({
+          data: {
+            email: body.email,
+            role: body.role,
+            phoneNumber: body.phoneNumber,
+            firstName: body.firstName,
+            lastName: body.lastName,
+            birthdate: body.birthdate as Date,
+            avatarUrl: body.avatarUrl,
+            country: body.country,
+            city: body.city,
+            gender: body.gender,
+            jobPosition: body.jobPosition,
+            startDate: body.startDate,
+            endDate: body.endDate,
+            status: UserStatus.PENDING,
 
-    await this.prisma.user.create({
-      data: {
-        ...body,
-        status: UserStatus.PENDING,
-        birthdate: body.birthdate || '',
-      },
-    });
+            branch: {
+              connect: { id: body.branchId },
+            },
 
-    try {
-      await this.mail.sendInvitation(body.email, token);
-    } catch (error) {
-      console.error('Failed to send email:', error);
-    }
+            department: body.departmentId ? { connect: { id: body.departmentId } } : undefined,
+          },
+        });
+
+        // 3️⃣ Створюємо Invitation
+        await tx.invitation.create({
+          data: {
+            email: body.email,
+            token,
+            userId: user.id,
+            role: user.role,
+            createdById: adminId,
+            expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000),
+          },
+        });
+
+        return user;
+      })
+      .then(async (user) => {
+        // 4️⃣ Надсилаємо email поза транзакцією
+        try {
+          await this.mail.sendInvitation(body.email, token);
+        } catch (error) {
+          console.error('Failed to send email:', error);
+        }
+
+        return user;
+      });
   }
 
   async verifyToken(token: string) {

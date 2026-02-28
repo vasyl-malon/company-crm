@@ -1,5 +1,5 @@
 import { UnauthorizedException } from '@nestjs/common';
-import { Role } from 'generated/prisma/enums';
+import { Role } from '@prisma/client';
 import { verify } from 'jsonwebtoken';
 
 export const jwtConstants = {

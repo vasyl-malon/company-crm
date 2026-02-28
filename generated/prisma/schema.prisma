@@ -85,8 +85,8 @@ model User {
   createdInvitations Invitation[] @relation("InvitationCreatedBy")
 
   // 🔹 інвайт, який відноситься до цього юзера
-  invitations Invitation[] @relation("InvitationForUser") 
-   emailVerifications EmailVerification[]
+  invitations        Invitation[]        @relation("InvitationForUser")
+  emailVerifications EmailVerification[]
 }
 
 model Branch {

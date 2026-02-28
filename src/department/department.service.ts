@@ -18,17 +18,36 @@ export class DepartmentService {
   }
 
   async getAll(query: any) {
-    const { page = 0, limit = 10 } = query;
+    const { page = 0, limit = 10, search } = query;
+
+    console.log(search)
 
     const [items, total] = await this.prisma.$transaction([
       this.prisma.department.findMany({
+        where: search
+          ? {
+              name: {
+                contains: search,
+                mode: 'insensitive',
+              },
+            }
+          : {},
         skip: page * limit,
         take: limit,
         orderBy: {
           createdAt: 'desc',
         },
       }),
-      this.prisma.user.count(),
+      this.prisma.department.count({
+        where: search
+          ? {
+              name: {
+                contains: search,
+                mode: 'insensitive',
+              },
+            }
+          : {},
+      }),
     ]);
 
     return {
@@ -41,10 +60,11 @@ export class DepartmentService {
     };
   }
 
-  async delete({ id }: DeleteDepartmentDto) {
+  async delete(id: string) {
+    console.log(id)
     const department = await this.prisma.department.delete({
       where: {
-        id,
+        id: parseInt(id),
       },
     });
 

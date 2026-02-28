@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { DepartmentService } from './department.service';
 import { CreateDepartmentDto } from './dto/create-department-dto';
@@ -10,8 +10,8 @@ export class DepartmentController {
   constructor(private service: DepartmentService) {}
 
   @Get()
-  async getAll(@Query('page') page: number, @Query('limit') limit: number) {
-    return this.service.getAll({ page, limit });
+  async getAll(@Query('page') page: number, @Query('limit') limit: number, @Query('search') search: string) {
+    return this.service.getAll({ page, limit, search });
   }
 
   @Post()
@@ -19,8 +19,9 @@ export class DepartmentController {
     return this.service.create(dto);
   }
 
-  @Delete()
-  async delete(@Body() dto: DeleteDepartmentDto) {
-    return this.service.delete(dto);
-  }
+@Delete('/:id')
+async delete(@Param('id') id: string) {
+  console.log(`Deleting department with ID: ${id}`);
+  return this.service.delete(id);
+}
 }
